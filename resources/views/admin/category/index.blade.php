@@ -6,7 +6,7 @@
             <div class="card-header pb-0">
               <div class="d-flex">
                 <h6 class = "col-10">Category</h6>
-                <a href="{{route('category.create')}}" type="submit" class="col-2 badge badge-sm btn btn-success bg-gradient-success"> Add Category</a>
+                <a href="{{route('AdCategory.create')}}" type="submit" class="col-2 badge badge-sm btn btn-success bg-gradient-success"> Add Category</a>
               </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">

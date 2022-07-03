@@ -30,7 +30,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ (Request::is('admin/category') || Request::is('admin/category/create'))  ? 'active' : '' }}" href="{{route('category.index')}}">
+          <a class="nav-link {{ (Request::is('admin/AdCategory') || Request::is('admin/AdCategory/create'))  ? 'active' : '' }}" href="{{route('AdCategory.index')}}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>

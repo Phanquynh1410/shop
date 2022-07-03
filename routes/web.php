@@ -22,6 +22,6 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.home');
     })->name('admin');
-    Route::resource('category', CategoryController::class);
+    Route::resource('AdCategory', CategoryController::class);
 
 });

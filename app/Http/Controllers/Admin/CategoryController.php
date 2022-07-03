@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Model\Category;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Admin\Component\Recusive;
 class CategoryController extends Controller
 {
     /**
@@ -12,6 +13,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //tạo 1 biến rỗng chứa dl đệ quy parent_id bằng construc
+     public $category;
+
+     public function __construct(Category $category)
+     {
+        $this->category = $category;
+     }
+
     public function index()
     {
         return view('admin.category.index');
@@ -24,7 +34,14 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $data = $this->category->all();
+        //create new obj recuisive truyền vào $category
+        $recusive = new Recusive($data);
+        //đối tượng trỏ đến phương thức
+        //tạo biến chứa thực hiện đệ quy. hết vòng thì $this->htmlOption = $this->htmlSelected
+        $htmlOption = $recusive->CategoryRecusive();
+
+        return view('admin.category.create', compact('htmlOption'));
     }
 
     /**
@@ -35,7 +52,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //create a new category
+        $this->category->create([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id,
+            'slug' => str_slug($request->name)
+        ]);
+        //use redirect can include in4 return
+        return redirect()->route('AdCategory.index')->with('Add new category successfully');
     }
 
     /**
